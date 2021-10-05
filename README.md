@@ -1,0 +1,2 @@
+# windows bach memo
+ バッチファイルのメモ
