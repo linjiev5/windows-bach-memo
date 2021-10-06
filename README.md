@@ -9,9 +9,11 @@
 
 #### 拡張子を取得する
 
+ファイルをコマンドウィンドウに投げてみてください
+
 ```batch
 @echo off
-set /p str=コピーするファイル投入してください
+set /p str=任意ファイル投入してください
 call:GET_FILE_INFO %str%
 :GET_FILE_INFO
 rem 格納フォルダのフルパス
@@ -35,5 +37,17 @@ exit
 echo Excelではない
 pause
 exit
+```
+
+#### 一括ファイルの名前を削除する
+
+任意文字列をコマンドに入力するだけで、当フォルダ内該当する文字列が含むファイルを一括削除する
+
+```batch
+@echo off
+Setlocal Enabledelayedexpansion
+set /p str=入力してください
+for /f "delims=" %%i in ('dir /b *.*') do (
+set "var=%%i" & ren "%%i" "!var:%str%=!")
 ```
 
