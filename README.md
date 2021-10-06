@@ -55,3 +55,15 @@ echo %date% | clip
 pause
 ```
 
+#### すべてのファイルの名前を取得する
+
+拡張子含む、リストをCSV出力する
+
+```batch
+@echo off
+dir /b >list.csv
+tree /f 
+echo csvを作成しました
+pause
+```
+
