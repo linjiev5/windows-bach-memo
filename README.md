@@ -67,3 +67,26 @@ echo csvを作成しました
 pause
 ```
 
+#### Excelのデフォルトを取得する
+
+新規のExcelファイルを作成する、名前指定など使用できる
+
+```batch
+@echo off
+title 名前指定、新規Excelファイル作成する
+set /p p=名前入力してください
+rem 本日の日付を取得する
+set date=&%date:~,10%
+rem ファイル名の後ろに日付を追加する
+set fileName=%p%_%date:/=%.xlsx
+
+rem フォルダを作成する、不要な場合は削除する
+mkdir %date:/=% & cd %date:/=%
+
+rem Excelテンプレート取得する
+for /f "tokens=2*" %%i in ('reg query "HKEY_CLASSES_ROOT\.xlsx\Excel.Sheet.12\ShellNew" /v "FileName"') do set REG_RESULT=%%j
+
+rem テンプレートをコピーし、名前指定する
+COPY "%REG_RESULT%" %fileName%
+```
+
