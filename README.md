@@ -13,20 +13,13 @@
 
 ```batch
 @echo off
-set /p str=任意ファイル投入してください
+set /p str=任意ファイル投入/入力してください
 call:GET_FILE_INFO %str%
 :GET_FILE_INFO
-rem 格納フォルダのフルパス
 echo フルパス:%~d1%~p1
-rem ファイル名
 echo ファイル名:%~n1%~x1
-rem 拡張子
 echo 拡張子：%~x1
-IF %~x1==.xlsx (
- goto XLSX
-) ELSE (
- goto OTHER
-)
+IF %~x1==.xlsx ( goto XLSX ) ELSE ( goto OTHER )
 rem 拡張子は.xlsxの場合
 :XLSX
 echo Excelファイルです
@@ -46,8 +39,10 @@ exit
 ```batch
 @echo off
 Setlocal Enabledelayedexpansion
-set /p str=入力してください
+set /p str=一括削除する文字列を入力してください
 for /f "delims=" %%i in ('dir /b *.*') do (
 set "var=%%i" & ren "%%i" "!var:%str%=!")
+echo %str%をを一括削除しました
+pause
 ```
 
