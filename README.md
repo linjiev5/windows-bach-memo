@@ -101,3 +101,10 @@ CreateObject("WScript.Shell").Run cmd, 0
 'WScript.Echo password
 ```
 
+
+Date startDate = Date.newInstance(2024, 4, 20);
+Date endDate = Date.newInstance(2024, 4, 25);
+
+Integer days = DateCalculator.calculateDays(startDate, endDate);
+System.debug('Days between start date and end date: ' + days);
+
